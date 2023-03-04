@@ -2,13 +2,14 @@
 from Crypto.Cipher import AES
 from getpass import getpass
 import subprocess, sys
+from base64 import b64encode
 
 password = getpass()
-# o1 = AES.new(password.ljust(16), AES.MODE_CFB, '*'*16)
-# encrypted = o1.encrypt(LONG_AND_HARD_TO_REMEMBER_TOKEN)
+# o1 = AES.new(b64encode(password.ljust(16).encode()), AES.MODE_CFB, ('*'*16).encode())
+# encrypted = o1.encrypt(LONG_AND_HARD_TO_REMEMBER_TOKEN.encode())
 
-encrypted = b'!>k\x98%6\x9e,j\x88\xd8\x13\xa85Z#\xdb\xa5Q\xb2\xfc^\x15\xd6\xe6mH=\xb9\xe4~\x88\xea\x8f\xe2M\xc1\xf6\xec\xcd'
-aes = AES.new(password.ljust(16), AES.MODE_CFB, '*'*16) # key and initial vector both need to be 16 byptes
+encrypted = b"\x02\x86\xaf s@\xb7\x93\xf1'm\x13\x06\x08\xdbR\xcc-\xf6/\xcbte\x9f\xc8\xacF\xe9\xfe\xb8\xd7\x85A\x8e\xb8a\xeee\x9dQ"
+aes = AES.new(b64encode(password.ljust(16).encode()), AES.MODE_CFB, ('*'*16).encode())   # key and initial vector both need to be 16 bytes
 token = aes.decrypt(encrypted).decode()
 
 for repo in sys.argv[1:]:
