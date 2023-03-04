@@ -5,3 +5,5 @@ dependencies:
   - xeus-cling=0.15.0
   - libstdcxx-devel_linux-64=*=*19
   - jupyterlab
+  - pip
+    - pycrypto
