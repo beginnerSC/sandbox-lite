@@ -15,7 +15,5 @@ token = aes.decrypt(encrypted).decode()
 for repo in sys.argv[1:]:
     subprocess.run(['git', 'clone', f'https://{token}@github.com/beginnerSC/{repo}'])
     subprocess.run(['sleep', '2'])
-    subprocess.run(['cd', f'{repo}'])
-    subprocess.run(['pipreqsnb', '.', '--force'])
+    subprocess.run(['pipreqsnb', f'./{repo}', '--force'])
     subprocess.run(['pip', 'install', '-r', 'requirements.txt'])
-    subprocess.run(['cd', '..'])
