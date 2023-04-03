@@ -16,6 +16,6 @@ for repo in sys.argv[1:]:
     subprocess.run(['git', 'clone', f'https://{token}@github.com/beginnerSC/{repo}'])
     subprocess.run(['sleep', '2'])
     os.chdir(f'{repo}')
-    subprocess.run(['pipreqsnb', '.', '--force'])
+    subprocess.run(['pipreqsnb', '.', '--force'])    # This runs through all python code so everything in the project must be working. This also treats all ipynb as python notebook: Cannot have for example c++ notebook. 
     subprocess.run(['pip', 'install', '-r', 'requirements.txt'])
     os.chdir('..')
